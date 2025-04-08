@@ -55,8 +55,8 @@ VectorXd sQR(const MatrixXd& A, const VectorXd& b){
 // PALU resolution
 VectorXd sPALU(const MatrixXd& A, const VectorXd& b){
     PartialPivLU<MatrixXd> lu(A);
-    MatrixXd L = lu.matrixL();
-    MatrixXd U = lu.matrixU();
+    MatrixXd L = lu.matrixLU().triangularView<Lower>();
+    MatrixXd U = lu.matrixLU().triangularView<Upper>();
     MatrixXd P = lu.permutationP();
 
     // actual calculation
